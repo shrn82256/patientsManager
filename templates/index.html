@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="index">Patient Manager</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="index">Add Patient</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="viewPatients">Search Patient</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	{% for message in get_flashed_messages()%}
+		{{ message|safe }}
+	{% endfor %}
+	<br>
+	<div class="container">
+		<div class="card">
+		<div class="card-body">
+			<form action="addPatient" method="POST" id="addPatientForm" name="addPatientForm">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="firstname">First Name</label>
+						<input type="text" class="form-control" placeholder="First Name" id="firstname" name="firstname" autofocus required>
+						<small id="firstname-error" class="form-text text-danger errorText">Error in First Name</small>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="lastname">Last Name</label>
+						<input type="text" class="form-control" placeholder="Last Name" id="lastname" name="lastname" required>
+						<small id="lastname-error" class="form-text text-danger errorText">Error in Last Name</small>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label for="age">Age</label>
+						<input type="number" class="form-control" placeholder="Age" id="age" name="age" min="0" required>
+					</div>
+					<div class="form-group col-md-3">
+						<label for="dob">Date of Birth</label>
+						<div class="input-group date" data-provide="datepicker">
+							<input type="text" class="form-control" id="dob" name="dob" required>
+							<div class="input-group-addon"></div>
+						</div>
+					</div>
+					<div class="form-group col-md-3">
+						<label for="gender">Gender</label>
+						<select class="custom-select" id="gender" name="gender" required>
+							<option value="m">Male</option>
+							<option value="f">Female</option>
+							<option value="o">Other</option>
+						</select>
+					</div>
+					<div class="form-group col-md-3">
+						<label for="phno">Phone No.</label>
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="phno-prefix">+91</span>
+							</div>
+							<input type="text" class="form-control" placeholder="Phone No." aria-label="Phone No." aria-describedby="phno-prefix" maxlength="10" id="phno" name="phno" required>
+						</div>
+						<small id="phno-error" class="form-text text-danger errorText">Error in Phone Number</small>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-12">
+						<label for="otherinfo">Other Information</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type in any other information..." id="otherinfo" name="otherinfo"></textarea>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+		</div>
+	</div>
+
+	<script type = "text/javascript" src = "{{ url_for('static', filename = 'main.js') }}" ></script>
+	<script type = "text/javascript" src = "{{ url_for('static', filename = 'validation.js') }}" ></script>
+</body>
+</html>

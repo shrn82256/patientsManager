@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="index">Patient Manager</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="index">Add Patient</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="viewPatients">Search Patient</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	{% for message in get_flashed_messages()%}
+		{{ message|safe }}
+	{% endfor %}
+	<br>
+	<div class="container">
+		<div class="card">
+		<div class="card-body">
+			<form action="searchPatients" method="GET" id="viewPatientsForm" name="viewPatientsForm">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="name-text">Name</span>
+					</div>
+					<input type="text" class="form-control" placeholder="Name" id="name" name="name" autofocus>
+					<div class="input-group-append">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+				<small id="name-error" class="form-text text-danger errorText">Error in Name</small>
+			</form>
+		</div>
+		</div>
+		<br>
+		<table class="table table-striped table-hover">
+			<thead>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Age</th>
+				<th scope="col">DOB</th>
+				<th scope="col">Gender</th>
+			</thead>
+			<tbody>
+				{% for patient in result %}
+				<tr>
+					<th scope="row">{{loop.index}}</th>
+					<td>{{patient.name}}</td>
+					<td>{{patient.age}}</td>
+					<td>{{patient.dob}}</td>
+					<td>
+						{% if patient.gender == 'm' %}
+						Male
+						{% elif patient.gender == 'f' %}
+						Female
+						{% else %}
+						Other
+						{% endif %}
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
