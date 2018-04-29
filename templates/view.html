@@ -47,6 +47,7 @@
 				<th scope="col">Age</th>
 				<th scope="col">DOB</th>
 				<th scope="col">Gender</th>
+				<th scope="col">Phone No.</th>
 			</thead>
 			<tbody>
 				{% for patient in result %}
@@ -64,6 +65,7 @@
 						Other
 						{% endif %}
 					</td>
+					<td>+91 {{patient.phno}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
