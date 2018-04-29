@@ -8,8 +8,14 @@ function raiseError(fieldName) {
 	$("#" + fieldName + "-error").slideDown();
 }
 
+function hideErrors() {
+	$(".errorText").slideUp();
+}
+
 $(document).ready(function() {
 	$('#addPatientForm').submit(function(event) {
+		hideErrors();
+
 		var fields = ["firstname", "lastname", "phno"];
 		var fieldIds = [0, 0, 1];
 		var flag = true;
@@ -18,6 +24,11 @@ $(document).ready(function() {
 				raiseError(fields[i]);
 				flag = false;
 			}
+		}
+
+		if (moment().diff(moment($("#dob").val(), "MM/DD/YYYY"), "days") <= 0) {
+			raiseError("dob");
+			flag = false;
 		}
 		return flag;
 	});

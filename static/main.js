@@ -20,8 +20,7 @@ $(document).ready(function() {
 	});
 
 	$("#dob").on('focusout', function(){
-		var d = Date.parse($(this).val());
-		if(d)
-			$("#age").val(Math.round(((new Date()).getTime() - (new Date(d)).getTime())/(1000*60*60*24*365.25)));
+		var age = moment().diff(moment($(this).val(), "MM/DD/YYYY"), "years");
+		$("#age").val(age ? age : 0);
 	});
 });

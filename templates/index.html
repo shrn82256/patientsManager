@@ -39,18 +39,16 @@
 					</div>
 				</div>
 				<div class="form-row">
-					<div class="form-group col-md-3">
-						<label for="age">Age</label>
-						<input type="number" class="form-control" placeholder="Age" id="age" name="age" min="0" value="0" disabled required>
-					</div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4">
 						<label for="dob">Date of Birth</label>
 						<div class="input-group date" data-provide="datepicker">
 							<input type="text" class="form-control" id="dob" name="dob" required>
 							<div class="input-group-addon"></div>
 						</div>
+						<input type="hidden" id="age" name="age">
+						<small id="dob-error" class="form-text text-danger errorText">Date of Birth cannot be negative</small>
 					</div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4">
 						<label for="gender">Gender</label>
 						<select class="custom-select" id="gender" name="gender" required>
 							<option value="m">Male</option>
@@ -58,7 +56,7 @@
 							<option value="o">Other</option>
 						</select>
 					</div>
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-4">
 						<label for="phno">Phone No.</label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
@@ -66,7 +64,7 @@
 							</div>
 							<input type="text" class="form-control" placeholder="Phone No." aria-label="Phone No." aria-describedby="phno-prefix" maxlength="10" id="phno" name="phno" required>
 						</div>
-						<small id="phno-error" class="form-text text-danger errorText">Error in Phone Number</small>
+						<small id="phno-error" class="form-text text-danger errorText">Phone No. should be 10 numerics</small>
 					</div>
 				</div>
 				<div class="form-row">
