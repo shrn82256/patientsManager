@@ -18,4 +18,10 @@ $(document).ready(function() {
 	$("#dob").prop('max', function(){
 		return new Date().toJSON().split('T')[0];
 	});
+
+	$("#dob").on('focusout', function(){
+		var d = Date.parse($(this).val());
+		if(d)
+			$("#age").val(Math.round(((new Date()).getTime() - (new Date(d)).getTime())/(1000*60*60*24*365.25)));
+	});
 });
