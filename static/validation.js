@@ -26,7 +26,7 @@ $(document).ready(function() {
 			}
 		}
 
-		if (moment().diff(moment($("#dob").val(), "MM/DD/YYYY"), "days") <= 0) {
+		if (moment().diff(moment($("#dob").val(), "MM/DD/YYYY"), "days") < 0) {
 			raiseError("dob");
 			flag = false;
 		}
