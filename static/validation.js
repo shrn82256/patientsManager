@@ -13,6 +13,7 @@ function hideErrors() {
 }
 
 $(document).ready(function() {
+	// console.log(moment().format("MM/DD/YYYY"));
 	$('#addPatientForm').submit(function(event) {
 		hideErrors();
 
@@ -25,11 +26,12 @@ $(document).ready(function() {
 				flag = false;
 			}
 		}
-
-		if (moment().diff(moment($("#dob").val(), "MM/DD/YYYY"), "days") < 0) {
+		// console.log(moment().diff(moment($("#dob").val(), "MM/DD/YYYY"), "mins"));
+		if (moment().diff(moment($("#dob").val(), "MM/DD/YYYY"), "mins") < 0) {
 			raiseError("dob");
 			flag = false;
 		}
+		// flag = false;
 		return flag;
 	});
 });
